@@ -1,57 +1,42 @@
 #include<iostream>
 using namespace std;
-#define MAX 10
-int main()
-{
-    int a[MAX];
-    int key,t,i,j,n;
-    cout<<"Input the no. of test cases"<<endl;
-    cin>>t;
-    for(i=0;i<t; i++)
+
+int main() {
+    int T;
+    cout << "Enter the number of test cases: ";
+    cin >> T;
+
+    for (int t = 0; t < T; t++) 
     {
-        cout<<"enter size of array"<<endl;
-        cin>>n;
-        cout<< "input the elements in the array"<<endl;
-        for(j=0;j<n;j++)
+        int n;
+        cout << "Enter the size of the array: ";
+        cin >> n;
+
+        int arr[n];
+        cout << "Enter the array elements: ";
+        for (int i = 0; i < n; i++) 
         {
-            cin>>a[j];
+            cin >> arr[i];
         }
-        cout<<"enter the element to be searched"<<endl;
-        cin>>key;
-        int lb=0;
-        int ub=n-1;
-        int c=0;
-        while (lb <= ub)
+
+        int K;
+        cout << "Enter the key element: ";
+        cin >> K;
+        int count = 0;
+
+        for (int i = 0; i < n ; i++) 
         {
-            int mid =(lb+ub)/2;
-            if(key==a[mid])
+            for (int j = i + 1; j < n; j++) 
             {
-                c=1;
-                int u=mid-1;
-                while(u>=0&&a[u]==key)
+                if (arr[j] - arr[i] == K) 
                 {
-                    c++;
-                    u--;
+                    count++;
                 }
-                int l=mid+1;
-                while(l<n&&a[l]==key)
-                {
-                    c++;
-                    l++;
-                }
-                break;
             }
-            else if(key>a[mid])
-            {
-                lb=mid+1;
-            }
-            else if(key<a[mid])
-            {
-                ub=mid-1;
-            }
-            
         }
-        cout<<"frequency of "<<key<<":"<<c<<endl;
+
+        cout << "Number of pairs with difference " << K << ": " << count << endl;
     }
+
     return 0;
 }
